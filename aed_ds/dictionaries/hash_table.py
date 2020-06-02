@@ -64,7 +64,7 @@ class HashTable(Dictionary):
                 colision_list.remove(count)
                 self.num_elements -= 1
                 return temp_value
-            cout += 1
+            count += 1
         raise NoSuchElementException
 
     def keys(self):
