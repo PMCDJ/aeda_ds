@@ -65,11 +65,38 @@ class BinarySearchTree(OrderedDictionary, Tree):
 
     # Removes the key k, and the value associated with it.
     # Throws NoSuchElementException
+    #node = self.get_min_node(self,k)
     def remove(self, k):
-        node = self.root
-        if node.get_key == k:
-            node.get
+        pass
+
+    def remove_right_minimum(self,root):
+        node = root.get_right_child()
+        if node is not None and node.get_left_child() is None:
+            root.set_right_child(node.get_right_child())
+        else:    
+            while node.get_left_child() is not None:
+                parent = node
+                node = node.get_left_child()
+            parent.set_left_child(node.get_right_child())
+        return node
         
+
+            
+            
+            
+        
+    def get_min_element(self):
+        if self.is_empty():
+            raise EmptyDictionaryException()
+        return self.get_min_node(self.root).get_element()
+
+    def get_min_node(self, root):
+        if root.get_left_child() is None:
+            return root
+        return self.get_min_node(root.get_left_child())
+
+    def remove_element(self,node):
+        pass   
 
     # Returns a List with all the keys in the dictionary.
     def keys(self): pass
