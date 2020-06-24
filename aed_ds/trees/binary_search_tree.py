@@ -6,20 +6,58 @@ from .nodes.binary_nodes import BinarySearchTreeNode
 
 class BinarySearchTree(OrderedDictionary, Tree):
     # Returns the number of elements in the dictionary.
-    def size(self): pass
+    def size(self):
+        self.num_elements = 0
+        root
 
     # Returns true if the dictionary is full.
-    def is_full(self): pass
+    def is_full(self):
+        return self.num_elements == self.size
 
     # Returns the value associated with key k.
     # Throws NoSuchElementException
-    def get(self, k): pass
+    def get(self, k):
+        return self.get_element(self.root,k)
+
+    def get_element(self, root, k):
+        if root is None:
+            raise NoSuchElementException()
+        else:
+            if root.get_key() == k:
+                return root.get_element()
+            elif root.get_key() > k:
+                return self.get_element(root.get_left_child(), k)
+            else:
+                return self.get_element(root.get_right_child(), k)
 
     # Inserts a new value, associated with key k.
     # Throws DuplicatedKeyException
-    def insert(self, k, v): pass
+    def insert(self, k, v):
+        if self.root is None:
+            self.root = BinarySearchTreeNode(k,v)
+        else:
+            node = self.root
+            while True:
+                if node.get_key() == k:
+                    raise DuplicatedKeyException()
+                elif node.get_key() > k:
+                    if node.get_left_child() is None:
+                        node.set_left_child(BinarySearchTreeNode(k,v))
+                        break
+                    else:
+                        node = node.get_left_child()
+                else:
+                    if node.get_right_child() is None:
+                        node.set_right_child(BinarySearchTreeNode(k,v))
+                        break
+                    else:
+                        node = node.get_right_child()
+                        
 
-    def insert_element(self, root, k, v): pass
+        
+
+    def insert_element(self, root, k, v):
+        pass
 
     # Updates the value associated with key k.
     # Throws NoSuchElementException
@@ -27,7 +65,10 @@ class BinarySearchTree(OrderedDictionary, Tree):
 
     # Removes the key k, and the value associated with it.
     # Throws NoSuchElementException
-    def remove(self, k): pass
+    def remove(self, k):
+        node = self.root
+        
+        
 
     # Returns a List with all the keys in the dictionary.
     def keys(self): pass
