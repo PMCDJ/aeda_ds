@@ -67,7 +67,8 @@ class BinarySearchTree(OrderedDictionary, Tree):
     # Throws NoSuchElementException
     def remove(self, k):
         node = self.root
-        
+        if node.get_key == k:
+            node.get
         
 
     # Returns a List with all the keys in the dictionary.
